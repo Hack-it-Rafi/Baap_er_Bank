@@ -31,15 +31,19 @@ document.getElementById('WiDrButton').addEventListener('click', function(){
     const PrevTot = document.getElementById('PrevTotAmount');
     const PreviousTotal = parseFloat(PrevTot.innerText);
     const WiDrField = document.getElementById('WiDrAmount');
-    const WithdrawAmount = WiDrField.value;
+    const WithdrawAmount = parseFloat(WiDrField.value);
     WiDrField.value = '';
+    if(isNaN(WithdrawAmount)){
+        alert("Please Enter a valid number");
+        return;
+    }
     if(parseFloat(WithdrawAmount)>PreviousTotal){
         alert('Baper eto Taka nai');
         return;
     }
-    const currentWiDrAmount = PreviousWiDr+parseFloat(WithdrawAmount);
+    const currentWiDrAmount = PreviousWiDr+WithdrawAmount;
     PrevWiDr.innerText = currentWiDrAmount;
-    const currentTotAmount = PreviousTotal-parseFloat(WithdrawAmount);
+    const currentTotAmount = PreviousTotal-WithdrawAmount;
     PrevTot.innerText = currentTotAmount;
 
     
